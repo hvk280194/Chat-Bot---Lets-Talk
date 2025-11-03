@@ -90,28 +90,6 @@ streamlit run frontend/app.py --server.port 8501
 
 ---
 
-## 🧱 Project Structure
-
-```
-letstalk/
-├─ app/                     # FastAPI backend
-│  ├─ main.py
-│  ├─ routers/
-│  ├─ services/
-│  ├─ schemas/
-│  ├─ utils/
-│  └─ core/
-│     └─ config.py
-├─ frontend/                # Streamlit frontend
-│  └─ app.py
-├─ assets/                  # Images for README or UI
-├─ tests/
-├─ requirements.txt
-└─ .env.example
-```
-
----
-
 ## ⚙️ Environment Variables (`.env`)
 
 ```bash
@@ -127,40 +105,3 @@ OLLAMA_MODEL=mistral
 OLLAMA_BASE_URL=http://localhost:11434
 ```
 
----
-
-## 🧪 Testing
-
-```bash
-pytest -v
-```
-
----
-
-## 📸 Screenshots
-
-Place your screenshots in `assets/` and embed them like:
-
-```markdown
-![Home UI](assets/home.png)
-![Chat Demo](assets/chat.png)
-```
-
----
-
-## 🧭 Roadmap
-
-* [ ] Integrate FAISS-based RAG
-* [ ] Add authentication
-* [ ] Deploy on AWS / Render
-* [ ] Add conversation analytics dashboard
-
----
-
-## 🧑‍💻 Author
-
-**Harshvardhan Khanna**
-AI Engineer | M.Sc. Computer Science, TU Ilmenau
-[LinkedIn](https://www.linkedin.com/in/harshkhanna-ai) • [GitHub](https://github.com/harshkhanna-ai)
-
----
