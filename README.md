@@ -42,13 +42,7 @@ pip install -r requirements.txt
 
 ### 3️⃣ Configure environment
 
-```bash
-cp .env.example .env
-# or on Windows
-copy .env.example .env
-```
-
-Then open `.env` and **add your Hugging Face API token**:
+Open `.env` and **add your Hugging Face API token**:
 
 ```bash
 HFHUB_API_TOKEN=hf_your_token_here
