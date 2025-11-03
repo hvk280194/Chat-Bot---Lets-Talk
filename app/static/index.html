@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Nebula Chat (SSE)</title>
+  <style>
+    body { font-family: Inter, system-ui, Arial; margin: 24px; }
+    #out { white-space: pre-wrap; border: 1px solid #ddd; padding: 12px; min-height: 120px; border-radius: 8px;}
+    input, button { padding: 10px; font-size: 14px; }
+    .row { display: flex; gap: 8px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h2>🌌 Nebula Chat (Hugging Face Hub via FastAPI)</h2>
+  <div class="row">
+    <input id="session" value="demo1" />
+    <input id="q" placeholder="Ask something..." style="flex:1" />
+    <button onclick="invoke()">Invoke</button>
+    <button onclick="stream()">Stream</button>
+  </div>
+  <div id="out"></div>
+
+  <script>
+    // const base = location.origin;
+    const base = "http://127.0.0.1:8000";
+
+    async function invoke() {
+      const session = document.getElementById('session').value;
+      const q = document.getElementById('q').value;
+      const out = document.getElementById('out');
+      out.textContent = '...';
+      const r = await fetch(base + '/chat/invoke', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({session_id: session, message: q})
+      });
+      const j = await r.json();
+      out.textContent = j.output || JSON.stringify(j, null, 2);
+    }
+    function stream() {
+      const session = document.getElementById('session').value;
+      const q = document.getElementById('q').value;
+      const out = document.getElementById('out');
+      out.textContent = '';
+      const es = new EventSource(base + '/chat/stream?session_id=' + encodeURIComponent(session) + '&q=' + encodeURIComponent(q));
+      es.onmessage = (e) => { out.textContent += e.data; };
+      es.onerror = () => { es.close(); };
+    }
+  </script>
+</body>
+</html>
